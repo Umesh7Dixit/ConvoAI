@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   const clickEvent = (id) => {
     setSelected(id);
-    toggleSidebar();
+    toggleSidebar();  //kahe bhe click krenge tu sidebar hut jayega on small device
   };
   return (
     <div
