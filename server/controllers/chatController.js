@@ -108,6 +108,7 @@ export const deleteChat = async(req,res)=> {
                 message: "Unauthorized",
             });
         }
+        // toString() is used here to convert the ObjectId objects into strings so that they can be accurately compared for equality.
 
         await chat.deleteOne();
 

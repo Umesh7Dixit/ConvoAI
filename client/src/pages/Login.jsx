@@ -1,19 +1,20 @@
 import { useState } from "react"
-import { UserData } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { UserData } from "../context/UserContext";
+import { LoadingSpinner } from "../components/Loading";
 
 
 const Login = () => {
 
     const [email,setEmail] = useState("");
-    const { loginUser, btnLoading } = UserData();
 
+    const {loginUser , btnLoading} = UserData();
     const navigate = useNavigate();
 
     const submitHandler = (e)=> {
         e.preventDefault();
-        console.log(email,navigate)
-    }
+        loginUser(email , navigate);
+    };
 
   return (
     <div className="flex justify-center items-center h-screen" >
@@ -24,7 +25,7 @@ const Login = () => {
             <input  type={'email'} id="email"  className="border rounded w-full p-2 px-3 text-gray-700 outline-none focus:ring-2 focus:border-blue-500"  required
                 onChange={(e)=> setEmail(e.target.value)} value={email} />
           </div>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" disabled={btnLoading} > {btnLoading?"Please Wait":"Submit"} </button>
+          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" disabled={btnLoading} > {btnLoading?<LoadingSpinner/>:"Submit"} </button>
         </form>
     </div>
   )

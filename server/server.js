@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import connectDb from './db/connectDB.js';
 import userRoutes from './routes/userRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
+import cors from 'cors';
 
 
 const app = express();
@@ -12,6 +13,7 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(cors());//enabling CORS
 
 
 

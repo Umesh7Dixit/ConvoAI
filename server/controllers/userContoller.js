@@ -50,14 +50,17 @@ export const verifyUser = async (req,res)=> {
 
         if(!verify)
         {
-            return res.status(401).json({
+            return res.status(400).json({
                 message: "Otp Expired",
             });
         }
 
+        console.log(verify.otp);
+        console.log(otp)
+
         if(verify.otp !== otp)
         {
-            return res.status(401).json({
+            return res.status(400).json({
                 message: "Wrong Otp",
             });
         }
@@ -78,7 +81,7 @@ export const verifyUser = async (req,res)=> {
 
 };
 
-
+ 
 export const myProfile = async (req, res )=> {
    
     try {

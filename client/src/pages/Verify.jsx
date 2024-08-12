@@ -1,10 +1,19 @@
 import { useState } from "react"
+import { UserData } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import { LoadingSpinner } from "../components/Loading";
+import { ChatData } from "../context/ChatContext";
 
 const Verify = () => {
+    
     const [otp, setOtp] = useState("");
+    const {verifyUser , btnLoading} =  UserData();
+    const {fetchChats} = ChatData();
+    const navigate = useNavigate();
+    
     const submitHandler = (e)=>{
         e.preventDefault();
-        console.log("OTP submitted: ", otp);
+        verifyUser(Number(otp),navigate, fetchChats);
     }
 
   return (
@@ -17,11 +26,12 @@ const Verify = () => {
             <input  type={'number'} id="email"  className="border rounded w-full p-2 px-3 text-gray-700 outline-none focus:ring-2 focus:border-blue-500"  required
                 onChange={(e)=> setOtp(e.target.value)} value={otp} />
           </div>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"  >Submit</button>
+          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"  >{btnLoading?<LoadingSpinner/>:"Submit"}</button>
         </form>
-    </div>
+        </div>
     </>
   )
-}
+
+};
 
 export default Verify

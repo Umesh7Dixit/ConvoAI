@@ -5,7 +5,7 @@ import { addConversation, createChat, deleteChat, getAllChats, getConversation }
 const route = express.Router();
 
 
-route.get(  "/new",  isAuth, createChat);
+route.post(  "/new",  isAuth, createChat);
 route.get(  "/all",  isAuth, getAllChats);
 route.post( "/:id",  isAuth, addConversation);
 route.get(  "/:id",   isAuth, getConversation);
